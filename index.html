@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="index.css">
+	<link rel="icon" href="favicon.svg">
+	<title>Michael Patioha</title>
+</head>
+<body>
+
+	<div class="scrollLine">
+		<div class="scrollbar"></div>
+	</div>
+
+	<div class="container"><img src="img/logo.svg" alt="michael logo" class="logo"></div>
+	
+	<div class="main-screen container">
+		<div class="main-screen__text-content">
+			<h1 class="text-content__title">Привет<img src="img/hiHand.jpg" alt="hi hand"><br>Меня зовут Миша.<br>Я твой веб-дизайнер.</h1>
+			<p class="text-content__subtitle">Дизайн который удивит ваших <span>клиентов.</span></p>
+			<a href="#myWorks" class="text-content__link">Примеры работ</a>
+		</div>
+		<img src="img/MainImg.png" alt="3d window" class="main-screen__img">
+	</div>
+
+	<div class="aboutMe container">
+		<h2 class="aboutMe__title title">Обо <span>мне</span></h2>
+		<p class="aboutMe__text text">Меня зовут Миша. Мне 17 лет, я занимаюсь веб-дизайном. У меня есть очень большое желание учиться и развиваться в данной нише, поэтому я в курсе всех новостей. Прошёл курс по сайтам «сайты деньги 2 ствола». Также проходил много иностранных курсов по дизайну. В работе люблю честность, отвественность и оперативность.</p>
+		<p class="aboutMe__text text">Моя задача, чтобы сайт приносил вам прибыль с помощью продающего дизайна и проработанных смыслов. Мне важен результат, а не сама картинка.</p>
+	</div>
+
+	<div class="mySkills container">
+		<h2 class="mySkills__title title">Мои <span>навыки</span></h2>
+		<div class="mySkills__skillsCards">
+			<div class="skillsCards__card text">Более 1 года опыта в «Figma»<img src="img/figmaIco.svg" alt="figma logo"></div>
+			<div class="skillsCards__card text">1.5 года опыта в «Adobe Photoshop» и «Adobe Illustartor»<img src="img/illustratorIco.svg" alt="illustrator logo"><img src="img/potoshopIco.svg" alt="potoshop logo" class="skillsCards__card__potoshop"></div>
+			<div class="skillsCards__card text">Выполнил 15 дизайнов за последние  2 месяца</div>
+		</div>
+	</div>
+
+	<div class="myWorks container" id="myWorks">
+		<h2 class="myWorks__title title">Мои <span>работы</span></h2>
+
+		<div class="myWorks__work">
+			<div class="work__description">
+				<h2 class="description__title">Bedroom Set</h2>
+				<a href="https://www.behance.net/gallery/112414401/Bedroom-set" class="description__link">Посмотреть</a>
+			</div>
+			<img src="img/work1.jpg" alt="michael work" class="work__img">
+		</div>
+		<div class="myWorks__work">
+			<div class="work__description">
+				<h2 class="description__title">Новогодний концепт<br>в стиле Кока Колы </h2>
+				<a href="https://www.behance.net/gallery/112367623/Coca-Cola-concept" class="description__link">Посмотреть</a>
+			</div>
+			<img src="img/work2.jpg" alt="michael work" class="work__img">
+		</div>
+	</div>
+
+	<footer class="footer">
+		<h2 class="footer__title">На первый заказ скидка</h2>
+		<h2 class="footer__title footer__title_bottom">10%<img src="img/money.png" alt="money"></h2>
+		<a href="https://t.me/mihuiill" class="footer__fastConnection">Быстрая связь со мной</a>
+		<div class="footer__links">
+			<a href=""><img src="img/insta.svg" alt="instagram logo" class="links__link"></a>
+			<a href="https://t.me/mihuiill"><img src="img/tg.svg" alt="telegram logo" class="links__link"></a>
+		</div>
+		<a href="https://t.me/bodamops25" class="footer__createdBy">Верстальщик: <span>@bodamops25</span></a>
+	</footer>
+
+	<script>
+
+		const html = document.querySelector('html')
+		const browser_id = navigator.userAgent;   
+
+		// else if (browser_id.search(/Safari/) != -1) alert('Safari');
+		// else if (browser_id.search(/MSIE/) != -1) alert('MSIE');
+		// else if (browser_id.search(/Opera/) != -1) alert('Opera');
+
+		if(html.offsetWidth >= 1145) {
+
+			const scrollbar = document.querySelector('.scrollbar')
+			const scrollLine = document.querySelector('.scrollLine')
+			let y = 0
+			
+			document.onwheel = (event) => {
+				if(event.deltaY > 0 && y < html.offsetHeight - 600) {
+					y += 100
+				}
+				else if(event.deltaY < 0 && y >= 40) {
+					y -= 100
+				}
+			}
+
+			scrollLine.onmousedown = () => {
+				html.style.webkitUserSelect = 'none'
+				document.onmousemove = (event) => {
+					if(event.clientY > 32 && event.clientY < window.innerHeight - 60) {
+						y = event.clientY * 100 / window.innerHeight / 100 * html.offsetHeight - 200
+					}
+				}
+			}
+			document.onmouseup = () => {
+				html.style.webkitUserSelect = 'auto'
+				document.onmousemove = (event) => {
+					event = 0
+				}
+			}
+
+			setInterval(() => {
+
+				scrollbar.style.top = (pageYOffset * (window.innerHeight + window.innerHeight * 0.08)) / html.offsetHeight + 'px'
+
+				if(y > pageYOffset) {
+					if (browser_id.search(/Chrome/) != -1) {
+						pageYOffset += (y - pageYOffset) / 40
+					}
+					else if (browser_id.search(/Firefox/) != -1) {
+						pageYOffset += (y - pageYOffset) / 10
+					}				
+					scrollTo(0, pageYOffset)
+				}
+				else if(y < pageYOffset) {
+					if (browser_id.search(/Chrome/) != -1) {
+						pageYOffset -= (pageYOffset - y) / 40
+					}
+					else if (browser_id.search(/Firefox/) != -1) {
+						pageYOffset -= (pageYOffset - y) / 10
+					}
+					scrollTo(0, pageYOffset)
+				}
+			}, 1)
+
+		}
+
+		else {
+
+		}
+
+	</script>
+
+</body>
+</html>
